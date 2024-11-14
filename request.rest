@@ -1,0 +1,26 @@
+### Create a New Post
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "message": "Hello World",
+  "sender": "Ori"
+}
+
+### Get All Posts
+GET http://localhost:3000/posts
+
+### Get posts by sender
+GET http://localhost:3000/posts?sender=Ori
+
+### Get a Post by ID
+GET http://localhost:3000/posts/673632178b10b064ed5cefd1
+
+### Update a Post by ID
+PUT http://localhost:3000/posts/673632178b10b064ed5cefd1
+Content-Type: application/json
+
+{
+    "message": "Updated Message",
+    "sender": "Ori"
+}
