@@ -1,18 +1,26 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Application } from "express";
 import postsRoutes from "./routes/postsRoutes";
-import mongoose from 'mongoose';
-import { connect } from 'mongoose';
+import mongoose from "mongoose";
+import commentsRoutes from "./routes/commentsRoutes";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
-const app = express();
-const port = process.env.PORT || 3000;
+dotenv.config();
 
-mongoose.connect('mongodb://localhost:27017/test')
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((error) => console.error("Error connecting to MongoDB:", error));
+const app: Application = express();
+const port: number | string = process.env.PORT || 3000;
+const dbUrl: string = process.env.DB_URL || "";
+console.log(dbUrl);
 
-app.use(express.json());
-app.use('/posts', postsRoutes);
+mongoose
+  .connect(dbUrl)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.error("Error connecting to MongoDB:", error));
+
+app.use(bodyParser.json());
+app.use("/posts", postsRoutes);
+app.use("/comments", commentsRoutes);
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-})
+  console.log(`Server running on port ${port}`);
+});
