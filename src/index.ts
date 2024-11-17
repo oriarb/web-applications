@@ -10,7 +10,6 @@ dotenv.config();
 const app: Application = express();
 const port: number | string = process.env.PORT || 3000;
 const dbUrl: string = process.env.DB_URL || "";
-console.log(dbUrl);
 
 mongoose
   .connect(dbUrl)

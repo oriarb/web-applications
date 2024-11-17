@@ -16,10 +16,10 @@ router.get("/", getAllComments);
 router.post("/", createComment);
 
 router.get("/id/:id", getCommentsById);
-router.get("/post/:postId", getCommentsByPostId);
-router.get("/sender/:sender", getCommentsBySender);
+router.get("/post/", getCommentsByPostId);
+router.get("/sender/", getCommentsBySender);
 
-router.put("/:id", updateComment);
-router.delete("/:id", deleteComment);
+router.put("/update", updateComment);
+router.delete("/delete", deleteComment);
 
 export default router;

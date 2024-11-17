@@ -13,22 +13,35 @@ Content-Type: application/json
 GET http://localhost:3000/comments
 
 ### Get comments by postId
-GET http://localhost:3000/comments/post/6738e54e3126fc8d05e28cb6
+GET http://localhost:3000/comments/post
+
+{
+    "postId": "6738e54e3126fc8d05e28cb6"
+}
 
 ### Get comments by sender
-GET http://localhost:3000/comments/sender/Or
+GET http://localhost:3000/comments/sender
+
+{
+    "sender": "Or"
+}
 
 ### Get comments by id
 GET http://localhost:3000/comments/id/6738eb163126fc8d05e28cbf
 
 ### Update a comment
-PUT http://localhost:3000/comments/6738eb163126fc8d05e28cbf
+PUT http://localhost:3000/comments/update
 Content-Type: application/json
 
 {
+  "id": "6738eb163126fc8d05e28cbf",
   "message": "Yalla Hapoel",
   "sender": "Cohen"
 }   
 
 ### Delete a comment
-DELETE http://localhost:3000/comments/6738e5bd3126fc8d05e28cb9           
+DELETE http://localhost:3000/comments/delete
+
+{
+    "id": "6738eb163126fc8d05e28cbf"
+}           

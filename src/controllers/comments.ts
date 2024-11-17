@@ -68,7 +68,7 @@ export const getCommentsById = async (req: Request, res: Response) => {
 
 export const getCommentsByPostId = async (req: Request, res: Response) => {
   try {
-    const { postId } = req.params;
+    const { postId } = req.body;
     if (!isValidObjectId(postId)) {
       return sendErrorResponse(res, "Invalid post ID", 400);
     }
@@ -87,7 +87,7 @@ export const getCommentsByPostId = async (req: Request, res: Response) => {
 
 export const getCommentsBySender = async (req: Request, res: Response) => {
   try {
-    const { sender } = req.params;
+    const { sender } = req.body;
 
     const comments: IComment[] = await Comment.find({ sender });
 
@@ -127,8 +127,7 @@ export const createComment = async (req: Request, res: Response) => {
 };
 
 export const updateComment = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { message, sender } = req.body;
+  const { id, message, sender } = req.body;
   try {
     const comment: IComment | null = await Comment.findByIdAndUpdate(
       id,
@@ -150,7 +149,7 @@ export const updateComment = async (req: Request, res: Response) => {
 };
 
 export const deleteComment = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.body;
   try {
     const comment: IComment | null = await Comment.findByIdAndDelete(id);
     if (!comment) {
