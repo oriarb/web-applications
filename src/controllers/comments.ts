@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Comment, IComment } from "../models/comment.model";
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const sendSuccessResponse = (
   res: Response,
@@ -25,18 +25,23 @@ const isValidObjectId = (id: string): boolean => {
   return Types.ObjectId.isValid(id);
 };
 
-export const getAllComments = async (req: Request, res: Response) => {
+export const getComments = async (req: Request, res: Response) => {
   try {
-    const comments: IComment[] = await Comment.find();
-    if (comments.length === 0) {
-      return sendErrorResponse(res, "No comments found", 404);
+    const { postId, sender } = req.query;
+    const filter: mongoose.FilterQuery<IComment> = {};
+
+    if (sender) filter.sender = sender as string;
+
+    if (postId) {
+      if (isValidObjectId(postId as string)) {
+        filter.postId = new mongoose.Types.ObjectId(postId as string);
+      } else {
+        return sendErrorResponse(res, "Invalid post ID", 400);
+      }
     }
-    sendSuccessResponse(
-      res,
-      comments,
-      200,
-      "All comments retrieved successfully."
-    );
+
+    const comments = await Comment.find(filter).lean();
+    sendSuccessResponse(res, comments, 200, "Comments retrieved successfully.");
   } catch (error: any) {
     sendErrorResponse(res, error.message);
   }
@@ -60,42 +65,6 @@ export const getCommentsById = async (req: Request, res: Response) => {
       comment,
       200,
       `Comment with ID ${id} retrieved successfully.`
-    );
-  } catch (error: any) {
-    sendErrorResponse(res, error.message);
-  }
-};
-
-export const getCommentsByPostId = async (req: Request, res: Response) => {
-  try {
-    const { postId } = req.body;
-    if (!isValidObjectId(postId)) {
-      return sendErrorResponse(res, "Invalid post ID", 400);
-    }
-
-    const comments: IComment[] = await Comment.find({ postId });
-    sendSuccessResponse(
-      res,
-      comments,
-      200,
-      `Comments for post ID ${postId} retrieved successfully.`
-    );
-  } catch (error: any) {
-    sendErrorResponse(res, error.message);
-  }
-};
-
-export const getCommentsBySender = async (req: Request, res: Response) => {
-  try {
-    const { sender } = req.body;
-
-    const comments: IComment[] = await Comment.find({ sender });
-
-    sendSuccessResponse(
-      res,
-      comments,
-      200,
-      `Comments by sender ${sender} retrieved successfully.`
     );
   } catch (error: any) {
     sendErrorResponse(res, error.message);
@@ -149,7 +118,7 @@ export const updateComment = async (req: Request, res: Response) => {
 };
 
 export const deleteComment = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
   try {
     const comment: IComment | null = await Comment.findByIdAndDelete(id);
     if (!comment) {

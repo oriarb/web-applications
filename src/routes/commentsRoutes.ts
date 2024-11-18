@@ -3,23 +3,19 @@ import {
   createComment,
   deleteComment,
   updateComment,
-  getAllComments,
-  getCommentsByPostId,
   getCommentsById,
-  getCommentsBySender,
+  getComments,
 } from "../controllers/comments";
 
 const router: Router = Router();
 
-router.get("/", getAllComments);
+router.get("/", getComments);
 
 router.post("/", createComment);
 
-router.get("/id/:id", getCommentsById);
-router.get("/post/", getCommentsByPostId);
-router.get("/sender/", getCommentsBySender);
+router.get("/:id", getCommentsById);
 
 router.put("/update", updateComment);
-router.delete("/delete", deleteComment);
+router.delete("/delete/:id", deleteComment);
 
 export default router;
