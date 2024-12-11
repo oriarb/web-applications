@@ -1,5 +1,6 @@
 ### Create a New Post
 POST http://localhost:3000/posts
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 Content-Type: application/json
 
 {
@@ -9,18 +10,22 @@ Content-Type: application/json
 
 ### Get All Posts
 GET http://localhost:3000/posts
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Get posts by sender
 GET http://localhost:3000/posts?sender=Ori
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Get a Post by ID
 GET http://localhost:3000/posts/673632178b10b064ed5cefd1
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Update a Post by ID
 PUT http://localhost:3000/posts/673632178b10b064ed5cefd1
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 Content-Type: application/json
 
 {
-    "message": "Updated Message",
-    "sender": "Ori"
+  "message": "Updated Message",
+  "sender": "Ori"
 }
