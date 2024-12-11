@@ -17,3 +17,12 @@ Content-Type: application/json
   "password": "123456"
 }
 
+### Refresh Token
+POST http://localhost:3000/auth/refreshToken
+Content-Type: application/json
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzkzNzY4N30.bDRpdMcmA6ks6seZ4Inm37lnBe3WHx9STfrVewyyoos
+
+### Logout
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzkzNzcxOH0.3k2TTwRIg0E8s0KMfp-ykF4ko7Csr_18U71bu0u2PxM
