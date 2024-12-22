@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, Secret, verify } from 'jsonwebtoken';
+import { extractTokenFromRequest } from '../utils/utils';
 
 declare global {
   namespace Express {
@@ -15,7 +16,7 @@ export const authMiddleware = (
   next: NextFunction,
 ): void => {
   try {
-    const token = req.header('Authorization')?.split(' ')[1];
+    const token = extractTokenFromRequest(req);
 
     if (!token) {
       res.status(401).json({ error: 'Access denied. No token provided.' });
@@ -23,7 +24,7 @@ export const authMiddleware = (
     }
 
     const secret: Secret = process.env.ACCESS_TOKEN_SECRET as Secret;
-    const decoded = verify(token, secret);
+    const decoded: string | JwtPayload = verify(token, secret);
 
     req.user = decoded;
 

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { IUser, User } from '../models/user.model';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { Secret, sign, verify } from 'jsonwebtoken';
+import { extractTokenFromRequest } from '../utils/utils';
 
 export const register = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
@@ -18,7 +19,7 @@ export const register = async (req: Request, res: Response) => {
       return;
     }
 
-    const salt = await genSalt(10);
+    const salt: string = await genSalt(10);
     const encryptedPassword = await hash(password, salt);
     const newUser: IUser = new User({
       email,
@@ -66,7 +67,7 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const refreshToken = async (req: Request, res: Response) => {
-  const token = req.header('Authorization')?.split(' ')[1];
+  const token = extractTokenFromRequest(req);
 
   if (!token) {
     res.status(401);
@@ -109,7 +110,7 @@ export const refreshToken = async (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response) => {
-  const token = req.header('Authorization')?.split(' ')[1];
+  const token = extractTokenFromRequest(req);
 
   if (!token) {
     res.status(401);
