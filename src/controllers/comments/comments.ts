@@ -1,25 +1,10 @@
 import { Request, Response } from "express";
-import { Comment, IComment } from "../models/comment.model";
+import { Comment, IComment } from "../../models/comment.model";
 import mongoose, { Types } from "mongoose";
-
-const sendSuccessResponse = (
-  res: Response,
-  data: any,
-  statusCode: number = 200,
-  message?: string
-) => {
-  console.log(message || "Success:", data);
-  res.status(statusCode).json(data);
-};
-
-const sendErrorResponse = (
-  res: Response,
-  errorMessage: string,
-  statusCode: number = 500
-) => {
-  console.error("Error:", errorMessage);
-  res.status(statusCode).json({ error: errorMessage });
-};
+import {
+  sendSuccessResponse,
+  sendErrorResponse,
+} from "../../functions/responseFunctions";
 
 const isValidObjectId = (id: string): boolean => {
   return Types.ObjectId.isValid(id);
@@ -96,7 +81,8 @@ export const createComment = async (req: Request, res: Response) => {
 };
 
 export const updateComment = async (req: Request, res: Response) => {
-  const { id, message, sender } = req.body;
+  const { id } = req.params;
+  const { message, sender } = req.body;
   try {
     const comment: IComment | null = await Comment.findByIdAndUpdate(
       id,
