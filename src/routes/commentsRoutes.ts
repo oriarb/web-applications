@@ -62,7 +62,7 @@ router.get("/:id", getCommentsById);
 
 /**
  * @swagger
- * /comments/update:
+ * /comments/{id}:
  *   put:
  *     description: Update a comment by ID
  *     parameters:
@@ -87,11 +87,11 @@ router.get("/:id", getCommentsById);
  *       200:
  *         description: Comment updated successfully
  */
-router.put("/update/:id", updateComment);
+router.put("/:id", updateComment);
 
 /**
  * @swagger
- * /comments/delete/{id}:
+ * /comments/{id}:
  *   delete:
  *     description: Delete a comment by ID
  *     parameters:
@@ -105,6 +105,6 @@ router.put("/update/:id", updateComment);
  *       200:
  *         description: Comment deleted successfully
  */
-router.delete("/delete/:id", deleteComment);
+router.delete("/:id", deleteComment);
 
 export default router;

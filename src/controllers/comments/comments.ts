@@ -89,6 +89,7 @@ export const updateComment = async (req: Request, res: Response) => {
       { message, sender },
       { new: true }
     );
+
     if (!comment) {
       return sendErrorResponse(res, "Comment not found", 404);
     }

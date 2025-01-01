@@ -24,14 +24,13 @@ GET http://localhost:3000/comments?sender=Or
 GET http://localhost:3000/comments/673bb176fef982016320e39f
 
 ### Update a comment
-PUT http://localhost:3000/comments/update
+PUT http://localhost:3000/comments?id=673bb176fef982016320e39f
 Content-Type: application/json
 
 {
-  "id": "673bb176fef982016320e39f",
   "message": "Yalla HapoelLL",
   "sender": "Cohen"
 }   
 
 ### Delete a comment
-DELETE http://localhost:3000/comments/delete/673bb176fef982016320e39f
+DELETE http://localhost:3000/comments/673bb176fef982016320e39f
