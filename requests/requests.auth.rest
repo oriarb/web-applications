@@ -20,7 +20,7 @@ Content-Type: application/json
 ### Refresh Token
 POST http://localhost:3000/auth/refreshToken
 Content-Type: application/json
-Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzkzNzY4N30.bDRpdMcmA6ks6seZ4Inm37lnBe3WHx9STfrVewyyoos
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczNDkwMDY3Mn0.19qO7bib7hq8gZLH6LtHNFMM04l6aGRbPsml4sJjCyQ
 
 ### Logout
 POST http://localhost:3000/auth/logout
