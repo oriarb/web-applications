@@ -4,7 +4,7 @@ import {
   deleteComment,
   getComments,
   getCommentsById,
-  getComments,
+  updateComment,
 } from "../controllers/comments/comments";
 import { authMiddleware } from '../common/auth-middleware';
 

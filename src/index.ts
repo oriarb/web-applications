@@ -1,18 +1,20 @@
-// src/appPromise.ts
-import { createApp } from "./createApp";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import swaggerOptions from "./swaggerOptions";
-import config from './config';
+import app from './app';
 
-const port: number | string = process.env.PORT || 3000;
+dotenv.config();
 
-async function startServer() {
+const port: string = process.env.PORT as string;
+const dbUrl: string = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+
+export const startServer = async () => {
   try {
-    const app = await createApp({
-      DB_URL: config.DB_URL
-    });
-    
+    await mongoose.connect(dbUrl);
+    console.log('Connected to MongoDB');
+
     const swaggerSpec: object = swaggerJsdoc(swaggerOptions);
     app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -20,9 +22,9 @@ async function startServer() {
       console.log(`Server running on port ${port}`);
     });
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('Error connecting to MongoDB:', error);
     process.exit(1);
   }
-}
+};
 
 startServer();

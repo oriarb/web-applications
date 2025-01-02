@@ -26,7 +26,7 @@ export const getComments = async (req: Request, res: Response) => {
     }
 
     const comments = await Comment.find(filter).lean();
-    sendSuccessResponse(res, comments, 200, "Comments retrieved successfully.");
+    sendSuccessResponse(res, comments, "Comments retrieved successfully.");
   } catch (error: any) {
     sendErrorResponse(res, error.message);
   }
@@ -48,7 +48,6 @@ export const getCommentsById = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} retrieved successfully.`
     );
   } catch (error: any) {
@@ -72,7 +71,6 @@ export const createComment = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      201,
       `Comment created successfully for post ID ${postId}.`
     );
   } catch (error: any) {
@@ -96,7 +94,6 @@ export const updateComment = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} updated successfully.`
     );
   } catch (error: any) {
@@ -114,7 +111,6 @@ export const deleteComment = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} deleted successfully.`
     );
   } catch (error: any) {

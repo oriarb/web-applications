@@ -3,10 +3,10 @@ import { Request, Response } from "express";
 export const sendSuccessResponse = (
   res: Response,
   data: any,
+  message: string,
   statusCode: number = 200,
-  message?: string
 ) => {
-  console.log(message || "Success:", data);
+  console.log(message);
   res.status(statusCode).json(data);
 };
 
