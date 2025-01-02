@@ -1,11 +1,13 @@
-import { Router } from "express";
+import { Router } from 'express';
 import {
   createComment,
   deleteComment,
-  updateComment,
+  getComments,
   getCommentsById,
   getComments,
 } from "../controllers/comments/comments";
+import { authMiddleware } from '../common/auth-middleware';
+
 
 const router: Router = Router();
 
@@ -18,7 +20,7 @@ const router: Router = Router();
  *       200:
  *         description: A list of comments
  */
-router.get("/", getComments);
+router.get("/", authMiddleware, getComments);
 
 /**
  * @swagger
@@ -40,7 +42,7 @@ router.get("/", getComments);
  *       201:
  *         description: Comment created successfully
  */
-router.post("/", createComment);
+router.post("/", authMiddleware, createComment);
 
 /**
  * @swagger
@@ -58,7 +60,7 @@ router.post("/", createComment);
  *       200:
  *         description: A comment by ID
  */
-router.get("/:id", getCommentsById);
+router.get("/:id", authMiddleware, getCommentsById);
 
 /**
  * @swagger
@@ -87,7 +89,7 @@ router.get("/:id", getCommentsById);
  *       200:
  *         description: Comment updated successfully
  */
-router.put("/:id", updateComment);
+router.put("/:id", authMiddleware, updateComment);
 
 /**
  * @swagger
@@ -105,6 +107,6 @@ router.put("/:id", updateComment);
  *       200:
  *         description: Comment deleted successfully
  */
-router.delete("/:id", deleteComment);
+router.delete("/:id", authMiddleware, deleteComment);
 
 export default router;

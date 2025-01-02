@@ -1,36 +1,41 @@
 
 ### Create a comment
 POST http://localhost:3000/comments
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 Content-Type: application/json
 
 {
   "postId": "6738e54e3126fc8d05e28cb6",
   "message": "HApoel",
   "sender": "Or"
-}   
+}
 
 ### Get all comments
 GET http://localhost:3000/comments
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Get comments by postId
 GET http://localhost:3000/comments?postId=6738e54e3126fc8d05e28cb6
-
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Get comments by sender
 GET http://localhost:3000/comments?sender=Or
-
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Get comments by id
 GET http://localhost:3000/comments/673bb176fef982016320e39f
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 
 ### Update a comment
-PUT http://localhost:3000/comments?id=673bb176fef982016320e39f
+PUT http://localhost:3000/comments/update
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
 Content-Type: application/json
 
 {
   "message": "Yalla HapoelLL",
   "sender": "Cohen"
-}   
+}
 
 ### Delete a comment
-DELETE http://localhost:3000/comments/673bb176fef982016320e39f
+DELETE http://localhost:3000/comments/delete/673bb176fef982016320e39f
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYzYWE1OWQ1YjViODIxMCIsImlhdCI6MTczMzc2NjUwOSwiZXhwIjoxNzMzNzcwMTA5fQ.nRqVF53b9A9ksXLTmdw60A-wpKcnjGh-zWnxHHRXtyk
