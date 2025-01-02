@@ -32,7 +32,6 @@ Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTYxMDhmZDYz
 Content-Type: application/json
 
 {
-  "id": "673bb176fef982016320e39f",
   "message": "Yalla HapoelLL",
   "sender": "Cohen"
 }

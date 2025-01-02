@@ -98,7 +98,7 @@ export const refreshToken = async (req: Request, res: Response) => {
   verify(
     token,
     process.env.REFRESH_TOKEN_SECRET as Secret,
-    async (error, userInfo: any) => {
+    async (error: any, userInfo: any) => {
       if (error) {
         return res
           .status(StatusCodes.BAD_REQUEST)
@@ -149,7 +149,7 @@ export const logout = (req: Request, res: Response) => {
   verify(
     token,
     process.env.REFRESH_TOKEN_SECRET as Secret,
-    async (error, userInfo: any) => {
+    async (error: any, userInfo: any) => {
       if (error) {
         return res
           .status(StatusCodes.BAD_REQUEST)

@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import swaggerOptions from "./swaggerOptions";
 import app from './app';
 
 dotenv.config();
@@ -11,6 +14,9 @@ export const startServer = async () => {
   try {
     await mongoose.connect(dbUrl);
     console.log('Connected to MongoDB');
+
+    const swaggerSpec: object = swaggerJsdoc(swaggerOptions);
+    app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);

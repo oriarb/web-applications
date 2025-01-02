@@ -1,25 +1,10 @@
 import { Request, Response } from "express";
-import { Comment, IComment } from "../models/comment.model";
+import { Comment, IComment } from "../../models/comment.model";
 import mongoose, { Types } from "mongoose";
-
-const sendSuccessResponse = (
-  res: Response,
-  data: any,
-  statusCode: number = 200,
-  message?: string
-) => {
-  console.log(message || "Success:", data);
-  res.status(statusCode).json(data);
-};
-
-const sendErrorResponse = (
-  res: Response,
-  errorMessage: string,
-  statusCode: number = 500
-) => {
-  console.error("Error:", errorMessage);
-  res.status(statusCode).json({ error: errorMessage });
-};
+import {
+  sendSuccessResponse,
+  sendErrorResponse,
+} from "../../functions/responseFunctions";
 
 const isValidObjectId = (id: string): boolean => {
   return Types.ObjectId.isValid(id);
@@ -41,7 +26,7 @@ export const getComments = async (req: Request, res: Response) => {
     }
 
     const comments = await Comment.find(filter).lean();
-    sendSuccessResponse(res, comments, 200, "Comments retrieved successfully.");
+    sendSuccessResponse(res, comments, "Comments retrieved successfully.");
   } catch (error: any) {
     sendErrorResponse(res, error.message);
   }
@@ -63,7 +48,6 @@ export const getCommentsById = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} retrieved successfully.`
     );
   } catch (error: any) {
@@ -87,7 +71,6 @@ export const createComment = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      201,
       `Comment created successfully for post ID ${postId}.`
     );
   } catch (error: any) {
@@ -96,20 +79,21 @@ export const createComment = async (req: Request, res: Response) => {
 };
 
 export const updateComment = async (req: Request, res: Response) => {
-  const { id, message, sender } = req.body;
+  const { id } = req.params;
+  const { message, sender } = req.body;
   try {
     const comment: IComment | null = await Comment.findByIdAndUpdate(
       id,
       { message, sender },
       { new: true }
     );
+
     if (!comment) {
       return sendErrorResponse(res, "Comment not found", 404);
     }
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} updated successfully.`
     );
   } catch (error: any) {
@@ -127,7 +111,6 @@ export const deleteComment = async (req: Request, res: Response) => {
     sendSuccessResponse(
       res,
       comment,
-      200,
       `Comment with ID ${id} deleted successfully.`
     );
   } catch (error: any) {
